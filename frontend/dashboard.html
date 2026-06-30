@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — ReLife AI</title>
+  <meta name="description" content="Track your sustainability impact: CO₂ saved, waste diverted, and your circular economy score." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="aura-bg"></div>
+
+<!-- Icon sprite -->
+<div style="display:none" aria-hidden="true">
+  <object data="assets/icons/icons.svg" type="image/svg+xml"></object>
+</div>
+
+<!-- ── Navigation ── -->
+<nav class="nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ReLife AI Home">
+      <div class="logo-mark" aria-hidden="true">♻</div>
+      <span class="logo-text">ReLife AI</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="upload.html">Scan</a></li>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Dashboard ── -->
+<main class="dashboard-page" aria-labelledby="dashboard-title">
+
+  <!-- Header -->
+  <div class="dashboard-header reveal">
+    <div class="dashboard-title-group">
+      <div class="dashboard-eyebrow">Your Impact at a Glance</div>
+      <h1 class="dashboard-title" id="dashboard-title">Sustainability Dashboard</h1>
+      <p class="dashboard-sub">Every scan you make keeps items out of landfill. Here's your story.</p>
+    </div>
+    <div class="dashboard-actions">
+      <button class="btn btn-ghost btn-sm" id="clearHistory" aria-label="Clear scan history">
+        🗑 Clear History
+      </button>
+      <a href="upload.html" class="btn btn-primary btn-sm" aria-label="Scan a new item">
+        + New Scan
+      </a>
+    </div>
+  </div>
+
+  <!-- ── KPI Cards ── -->
+  <div class="kpi-grid" role="list" aria-label="Key performance indicators">
+
+    <!-- Total Scans -->
+    <div class="kpi-card glass green-card reveal" role="listitem">
+      <div class="kpi-header">
+        <div class="kpi-icon-wrap green" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <div class="kpi-trend up" aria-label="Trending up">↑ All time</div>
+      </div>
+      <div class="kpi-value green" id="kpiScans" aria-live="polite">0</div>
+      <div class="kpi-label">Items Scanned</div>
+      <div class="kpi-progress" role="progressbar" aria-label="Scan progress">
+        <div class="kpi-progress-fill green" id="kpiScansFill" data-width="0%" style="width:0"></div>
+      </div>
+      <div class="kpi-sub">Goal: <strong>50 items</strong> this month</div>
+    </div>
+
+    <!-- CO2 Saved -->
+    <div class="kpi-card glass sky-card reveal" role="listitem">
+      <div class="kpi-header">
+        <div class="kpi-icon-wrap sky" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+          </svg>
+        </div>
+        <div class="kpi-trend up" aria-label="CO2 saved increasing">↑ Great</div>
+      </div>
+      <div class="kpi-value sky" id="kpiCO2" aria-live="polite">0 kg</div>
+      <div class="kpi-label">CO₂ Emissions Saved</div>
+      <div class="kpi-progress" role="progressbar" aria-label="CO2 savings progress">
+        <div class="kpi-progress-fill sky" id="kpiCO2Fill" data-width="0%" style="width:0"></div>
+      </div>
+      <div class="kpi-sub">Equiv. to <strong>driving saved</strong></div>
+    </div>
+
+    <!-- Waste Diverted -->
+    <div class="kpi-card glass violet-card reveal" role="listitem">
+      <div class="kpi-header">
+        <div class="kpi-icon-wrap violet" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+          </svg>
+        </div>
+        <div class="kpi-trend up">↑ On track</div>
+      </div>
+      <div class="kpi-value violet" id="kpiWaste" aria-live="polite">0 kg</div>
+      <div class="kpi-label">Waste Diverted</div>
+      <div class="kpi-progress" role="progressbar" aria-label="Waste diversion progress">
+        <div class="kpi-progress-fill violet" id="kpiWasteFill" data-width="0%" style="width:0"></div>
+      </div>
+      <div class="kpi-sub">Kept out of <strong>landfill</strong></div>
+    </div>
+
+    <!-- Circular Economy Score -->
+    <div class="kpi-card glass amber-card reveal" role="listitem">
+      <div class="kpi-header">
+        <div class="kpi-icon-wrap amber" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M8 16H3v5"/>
+          </svg>
+        </div>
+        <div class="kpi-trend up">↑ Improving</div>
+      </div>
+      <div class="kpi-value amber" id="kpiCircularity" aria-live="polite">0%</div>
+      <div class="kpi-label">Circular Economy Score</div>
+      <div class="kpi-progress" role="progressbar" aria-label="Circularity score progress">
+        <div class="kpi-progress-fill amber" id="kpiCircularityFill" data-width="0%" style="width:0"></div>
+      </div>
+      <div class="kpi-sub">Average eco score <strong>across scans</strong></div>
+    </div>
+
+  </div>
+
+  <!-- ── Main 2-col grid ── -->
+  <div class="dash-grid">
+
+    <!-- Left: CO2 trend chart -->
+    <div class="dash-panel glass reveal" aria-labelledby="co2PanelTitle">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title" id="co2PanelTitle">CO₂ Savings — Last 7 Days</div>
+          <div class="panel-meta">Estimated kg of CO₂ prevented per day</div>
+        </div>
+        <span class="badge badge-green" style="font-size:10px">Live</span>
+      </div>
+      <div class="chart-area" aria-label="CO2 savings chart">
+        <svg class="chart-svg" id="co2ChartSvg" role="img" aria-label="Line chart showing CO2 saved over last 7 days"></svg>
+      </div>
+    </div>
+
+    <!-- Right: Circular Economy donut -->
+    <div class="dash-panel glass reveal" aria-labelledby="economyPanelTitle">
+      <div class="panel-header">
+        <div class="panel-title" id="economyPanelTitle">Actions Breakdown</div>
+        <span class="panel-meta">By recommendation type</span>
+      </div>
+      <div class="economy-ring-wrap">
+        <svg id="economyDonut" width="120" height="120" viewBox="0 0 120 120"
+             role="img" aria-label="Donut chart of recommendation actions"></svg>
+        <div class="economy-legend" role="list" aria-label="Chart legend">
+          <div class="legend-item" role="listitem">
+            <div class="legend-dot-label">
+              <span class="legend-dot" style="background:#FBBF24"></span> Sell
+            </div>
+            <span class="legend-val" style="color:#FBBF24">💰</span>
+          </div>
+          <div class="legend-item" role="listitem">
+            <div class="legend-dot-label">
+              <span class="legend-dot" style="background:#0EA5E9"></span> Donate
+            </div>
+            <span class="legend-val" style="color:#0EA5E9">🤝</span>
+          </div>
+          <div class="legend-item" role="listitem">
+            <div class="legend-dot-label">
+              <span class="legend-dot" style="background:#a78bfa"></span> Repair
+            </div>
+            <span class="legend-val" style="color:#a78bfa">🪡</span>
+          </div>
+          <div class="legend-item" role="listitem">
+            <div class="legend-dot-label">
+              <span class="legend-dot" style="background:#1DB954"></span> Recycle
+            </div>
+            <span class="legend-val" style="color:#1DB954">♻️</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Bottom row: goals · categories · CTA ── -->
+  <div class="dash-bottom">
+
+    <!-- Goals / Progress -->
+    <div class="dash-panel glass reveal" aria-labelledby="goalsPanelTitle">
+      <div class="panel-header">
+        <div class="panel-title" id="goalsPanelTitle">Monthly Goals</div>
+        <span class="panel-action" onclick="window.location.href='upload.html'">+ Add scan</span>
+      </div>
+      <div class="goal-list" id="goalList" role="list" aria-label="Monthly sustainability goals">
+        <!-- Populated by JS -->
+        <div class="skeleton" style="height:52px;border-radius:8px;margin-bottom:12px"></div>
+        <div class="skeleton" style="height:52px;border-radius:8px;margin-bottom:12px"></div>
+        <div class="skeleton" style="height:52px;border-radius:8px;margin-bottom:12px"></div>
+        <div class="skeleton" style="height:52px;border-radius:8px"></div>
+      </div>
+    </div>
+
+    <!-- Category breakdown -->
+    <div class="dash-panel glass reveal" aria-labelledby="catPanelTitle">
+      <div class="panel-header">
+        <div class="panel-title" id="catPanelTitle">Top Categories</div>
+        <span class="panel-meta">by scan count</span>
+      </div>
+      <div class="category-bars" id="categoryBars" role="list" aria-label="Category breakdown chart">
+        <div class="skeleton" style="height:16px;border-radius:4px;margin-bottom:14px"></div>
+        <div class="skeleton" style="height:16px;border-radius:4px;margin-bottom:14px"></div>
+        <div class="skeleton" style="height:16px;border-radius:4px;margin-bottom:14px"></div>
+        <div class="skeleton" style="height:16px;border-radius:4px"></div>
+      </div>
+    </div>
+
+    <!-- CTA card -->
+    <div class="dash-cta-card reveal" role="complementary" aria-label="Scan another item">
+      <div>
+        <div style="font-size:36px;margin-bottom:14px">🌍</div>
+        <div class="dash-cta-title">Ready to give<br>another item a life?</div>
+        <p class="dash-cta-sub">
+          Every scan counts. Whether it's a jacket, a blender, or a bicycle —
+          we'll find the most sustainable path for it.
+        </p>
+      </div>
+      <a href="upload.html" class="btn btn-primary" style="width:100%;justify-content:center" aria-label="Scan a new item now">
+        <span>📸</span> Scan an Item
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ── Activity Feed ── -->
+  <div class="dash-panel glass reveal" style="margin-top:20px" aria-labelledby="activityPanelTitle">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title" id="activityPanelTitle">Recent Scans</div>
+        <div class="panel-meta">Your last 8 analysed items</div>
+      </div>
+      <a href="upload.html" class="panel-action" aria-label="Upload a new item">New scan →</a>
+    </div>
+    <div class="activity-list" id="activityList" role="list" aria-label="Recent scan history">
+      <!-- Populated by JS -->
+      <div class="skeleton" style="height:56px;border-radius:8px;margin-bottom:10px"></div>
+      <div class="skeleton" style="height:56px;border-radius:8px;margin-bottom:10px"></div>
+      <div class="skeleton" style="height:56px;border-radius:8px"></div>
+    </div>
+  </div>
+
+  <!-- Community impact banner -->
+  <div class="impact-card reveal" style="margin-top:24px;padding:40px 36px" role="region" aria-label="Community impact">
+    <div class="section-label" style="margin-bottom:14px">
+      <span class="badge badge-sky">Community Impact</span>
+    </div>
+    <h2 class="impact-title" style="font-size:clamp(22px,3vw,32px);margin-bottom:10px">
+      Together we've saved<br>
+      <span style="background:linear-gradient(90deg,var(--green),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+        92,400 kg of CO₂
+      </span>
+    </h2>
+    <p class="impact-sub" style="font-size:14px;margin-bottom:28px">
+      Across 18,200 scans worldwide, ReLife AI users have collectively kept
+      74 tonnes of items out of landfills this month alone.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="upload.html" class="btn btn-primary btn-sm">📸 Contribute a scan</a>
+      <button class="btn btn-ghost btn-sm"
+              onclick="navigator.share ? navigator.share({title:'ReLife AI Impact',url:location.origin}) : navigator.clipboard?.writeText(location.origin).then(()=>Toast.success('Link copied!'))">
+        🌱 Share the project
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>

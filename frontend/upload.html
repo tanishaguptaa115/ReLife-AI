@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload — ReLife AI</title>
+  <meta name="description" content="Upload a photo of any item to get AI-powered sustainability recommendations." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="aura-bg"></div>
+
+<!-- ── Navigation ── -->
+<nav class="nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ReLife AI Home">
+      <div class="logo-mark" aria-hidden="true">♻</div>
+      <span class="logo-text">ReLife AI</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="upload.html" class="active">Scan</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Upload Page ── -->
+<main class="upload-page" aria-labelledby="upload-title">
+
+  <div class="upload-header reveal">
+    <div id="apiModeBadge" class="api-mode-badge live" style="margin-bottom:18px">
+      <span class="tag-dot"></span> Live API — Flask :5001
+    </div>
+    <h1 class="upload-title" id="upload-title">
+      Drop your item.<br>We'll do the rest.
+    </h1>
+    <p class="upload-sub">
+      Upload a clear photo and our AI will identify, evaluate, and recommend
+      the most sustainable action in seconds.
+    </p>
+  </div>
+
+  <!-- Upload Card -->
+  <div class="upload-card glass reveal" role="region" aria-label="Image upload area">
+
+    <!-- Drop Zone -->
+    <div class="drop-zone" id="dropZone" role="button" tabindex="0"
+         aria-label="Click or drag and drop an image here"
+         onkeydown="if(event.key==='Enter'||event.key===' ')this.click()">
+
+      <div class="drop-zone-icon" aria-hidden="true">📦</div>
+      <p class="drop-zone-title">Drop your item photo here</p>
+      <p class="drop-zone-hint">
+        or <span>click to browse</span> from your device
+      </p>
+
+      <div class="file-types" aria-label="Accepted file types">
+        <span class="file-type-tag">JPG</span>
+        <span class="file-type-tag">PNG</span>
+        <span class="file-type-tag">WEBP</span>
+        <span class="file-type-tag">HEIC</span>
+      </div>
+
+      <input type="file" id="fileInput" accept="image/*" aria-label="File input" />
+    </div>
+
+    <!-- Preview Area -->
+    <div class="preview-area" id="previewArea" aria-live="polite">
+      <div class="preview-img-wrap">
+        <img id="previewImg" src="" alt="Preview of your uploaded item" />
+        <button class="preview-remove" id="removeBtn" aria-label="Remove uploaded image">✕</button>
+      </div>
+      <p class="preview-name" id="previewName"></p>
+    </div>
+
+    <!-- Divider (only shown when preview is visible) -->
+    <div class="upload-divider" aria-hidden="true">Ready to analyse</div>
+
+    <!-- Actions -->
+    <div class="upload-actions">
+      <button class="btn btn-ghost" id="changePicBtn"
+              onclick="document.getElementById('fileInput').click()"
+              aria-label="Choose a different image">
+        Choose Different
+      </button>
+      <button class="btn btn-primary" id="analyzeBtn" aria-label="Analyse this item with AI">
+        <span>🔍</span> Analyse Item
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Tips -->
+  <div class="upload-tips reveal" role="list" aria-label="Photo tips">
+    <div class="tip-chip glass" role="listitem">
+      <span aria-hidden="true">☀️</span>
+      <span>Good lighting gives better results</span>
+    </div>
+    <div class="tip-chip glass" role="listitem">
+      <span aria-hidden="true">🖼️</span>
+      <span>Centre the item in the frame</span>
+    </div>
+    <div class="tip-chip glass" role="listitem">
+      <span aria-hidden="true">🏷️</span>
+      <span>Include labels or tags if present</span>
+    </div>
+  </div>
+
+  <!-- Error banner -->
+  <div class="error-banner" id="errorBanner" role="alert" aria-live="assertive">
+    <div class="error-banner-icon" aria-hidden="true">⚠️</div>
+    <div class="error-banner-text">
+      <strong class="error-banner-title">Analysis failed</strong>
+      <span class="error-banner-detail">Could not reach the backend.</span>
+    </div>
+    <button class="error-retry" onclick="document.getElementById('analyzeBtn').click()" aria-label="Retry analysis">Retry</button>
+  </div>
+
+</main>
+
+<!-- ── Loading Overlay ── -->
+<div class="loading-overlay" id="loadingOverlay" role="dialog" aria-modal="true"
+     aria-label="Analysing your item" aria-live="assertive">
+  <div class="loading-spinner" aria-hidden="true"></div>
+  <p class="loading-title">Analysing your item…</p>
+  <ul class="loading-steps" role="list">
+    <li class="loading-step" role="listitem">🔍 Identifying item type &amp; brand</li>
+    <li class="loading-step" role="listitem">📊 Estimating condition &amp; market value</li>
+    <li class="loading-step" role="listitem">🌿 Computing Eco Score</li>
+    <li class="loading-step" role="listitem">✨ Generating recommendations</li>
+  </ul>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  // Hide divider and actions by default; show when preview is visible
+  const previewObserver = new MutationObserver(() => {
+    const visible = document.getElementById('previewArea').classList.contains('visible');
+    document.querySelector('.upload-divider').style.display = visible ? '' : 'none';
+    document.querySelector('.upload-actions').style.display = visible ? '' : 'none';
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const pa = document.getElementById('previewArea');
+    if (pa) {
+      document.querySelector('.upload-divider').style.display = 'none';
+      document.querySelector('.upload-actions').style.display = 'none';
+      previewObserver.observe(pa, { attributes: true, attributeFilter: ['class'] });
+    }
+  });
+</script>
+</body>
+</html>

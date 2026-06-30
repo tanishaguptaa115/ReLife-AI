@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReLife AI — Give Every Item a Second Life</title>
+  <meta name="description" content="AI-powered sustainability: scan any item and discover the best way to sell, donate, repair, or recycle it." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><rect width='36' height='36' rx='10' fill='url(%23g)'/><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231DB954'/><stop offset='100%25' stop-color='%230EA5E9'/></linearGradient></defs><text y='26' x='6' font-size='22'>♻️</text></svg>" />
+</head>
+<body>
+
+<!-- Eco aura background -->
+<div class="aura-bg"></div>
+
+<!-- ── Navigation ── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ReLife AI Home">
+      <div class="logo-mark" aria-hidden="true">♻</div>
+      <span class="logo-text">ReLife AI</span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="upload.html" class="nav-cta">Scan an Item →</a></li>
+    </ul>
+
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero" aria-labelledby="hero-headline">
+  <div class="hero-eyebrow">
+    <span class="badge badge-green">
+      <span class="tag-dot"></span> Powered by AI · Built for the Planet
+    </span>
+  </div>
+
+  <h1 class="hero-headline" id="hero-headline">
+    Give Every Item<br>a <span class="gradient-word">Second Life</span>
+  </h1>
+
+  <p class="hero-sub">
+    Point. Scan. Decide. ReLife AI instantly tells you whether to sell,
+    donate, repair, or recycle — backed by real market data and your
+    item's eco score.
+  </p>
+
+  <div class="hero-actions">
+    <a href="upload.html" class="btn btn-primary btn-lg" aria-label="Start scanning an item">
+      <span>🔍</span> Scan Your Item
+    </a>
+    <a href="#how-it-works" class="btn btn-ghost btn-lg">
+      See How It Works
+    </a>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ── Stats ── -->
+<section class="stats-section" aria-label="Sustainability statistics">
+  <div class="container">
+    <div class="stats-grid">
+
+      <div class="stat-card glass reveal">
+        <div class="stat-icon" aria-hidden="true">🏭</div>
+        <div class="stat-num" data-count="92" data-suffix="M">0M</div>
+        <div class="stat-label">tonnes of textile waste<br>generated globally each year</div>
+      </div>
+
+      <div class="stat-card glass reveal">
+        <div class="stat-icon" aria-hidden="true">💸</div>
+        <div class="stat-num" data-prefix="$" data-count="500" data-suffix="B">$0B</div>
+        <div class="stat-label">in value lost from clothing<br>that ends up in landfills</div>
+      </div>
+
+      <div class="stat-card glass reveal">
+        <div class="stat-icon" aria-hidden="true">🌱</div>
+        <div class="stat-num" data-count="73" data-suffix="%">0%</div>
+        <div class="stat-label">of materials could be<br>recovered or reused</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── How It Works ── -->
+<section class="how-section" id="how-it-works" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-label">
+      <span class="badge badge-sky">Simple as 1–2–3</span>
+    </div>
+    <h2 class="section-title" id="how-title">Works in seconds.<br>Matters for decades.</h2>
+    <p class="section-sub">
+      No expertise needed. ReLife AI does the heavy lifting — you just make the decision.
+    </p>
+
+    <div class="steps-grid">
+
+      <div class="step-card glass reveal">
+        <div class="step-number">Step 01</div>
+        <div class="step-icon-wrap green" aria-hidden="true">📸</div>
+        <h3 class="step-title">Photograph your item</h3>
+        <p class="step-desc">
+          Drag, drop, or snap. Upload any photo of a household item,
+          clothing piece, or electronic device — clear or blurry, it works.
+        </p>
+      </div>
+
+      <div class="step-card glass reveal">
+        <div class="step-number">Step 02</div>
+        <div class="step-icon-wrap sky" aria-hidden="true">🤖</div>
+        <h3 class="step-title">AI analyses &amp; scores it</h3>
+        <p class="step-desc">
+          Our model identifies the item, estimates its condition and market
+          value, then computes an Eco Score based on material and age.
+        </p>
+      </div>
+
+      <div class="step-card glass reveal">
+        <div class="step-number">Step 03</div>
+        <div class="step-icon-wrap violet" aria-hidden="true">✨</div>
+        <h3 class="step-title">Get your action plan</h3>
+        <p class="step-desc">
+          Receive ranked recommendations — Sell, Donate, Repair, Recycle —
+          with platform suggestions, estimated earnings, and CO₂ savings.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Impact CTA ── -->
+<section class="impact-section" id="impact" aria-labelledby="impact-title">
+  <div class="container">
+    <div class="impact-card reveal">
+      <div class="section-label" style="margin-bottom:20px">
+        <span class="badge badge-green">Join the Movement</span>
+      </div>
+      <h2 class="impact-title" id="impact-title">
+        Your clutter can<br>change the planet.
+      </h2>
+      <p class="impact-sub">
+        Every item you redirect from a landfill saves resources,
+        reduces emissions, and — often — puts money in your pocket.
+        Start with what's already in your home.
+      </p>
+      <a href="upload.html" class="btn btn-primary btn-lg" aria-label="Start scanning now">
+        <span>♻️</span> Start Scanning — It's Free
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 ReLife AI · Give Every Item a Second Life
+      </div>
+      <ul class="footer-links" role="list">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>

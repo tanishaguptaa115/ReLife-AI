@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Results — ReLife AI</title>
+  <meta name="description" content="See AI-powered sustainability recommendations for your item." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="aura-bg"></div>
+
+<!-- ── Navigation ── -->
+<nav class="nav scrolled" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ReLife AI Home">
+      <div class="logo-mark" aria-hidden="true">♻</div>
+      <span class="logo-text">ReLife AI</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="upload.html">Scan</a></li>
+      <li><a href="result.html" class="active">Results</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Result Page ── -->
+<main class="result-page" aria-labelledby="result-title">
+
+  <!-- Header -->
+  <div class="result-header reveal">
+    <div class="badge badge-green" style="margin-bottom:14px">
+      <span class="tag-dot"></span> Analysis Complete
+    </div>
+    <h1 class="result-title" id="result-title">Here's what we found</h1>
+    <p class="result-sub">Review the details below and choose the path that works for you.</p>
+  </div>
+
+  <!-- API mode badge (populated by JS) -->
+  <div id="resultModeBadge" class="api-mode-badge demo" style="margin:0 auto 24px;display:flex;width:fit-content" role="status" aria-live="polite">
+    <span>🟡</span> Demo mode
+  </div>
+
+  <!-- Main grid: image + details -->
+  <div class="result-grid">
+
+    <!-- Left column: image + eco score -->
+    <div class="result-image-card glass reveal" aria-label="Item image and eco score">
+      <div class="result-img-wrap" role="img" aria-label="Uploaded item photo">
+        <div class="result-img-placeholder" id="imgPlaceholder" aria-hidden="true">
+          <span>📦</span>
+          <p>No image uploaded</p>
+        </div>
+        <img id="resultImg" src="" alt="Your uploaded item" style="display:none" />
+      </div>
+
+      <!-- Eco Score -->
+      <div class="eco-score-wrap">
+        <p class="eco-score-label">Sustainability Rating</p>
+        <svg class="eco-ring-svg" id="ecoRingSvg"
+             width="110" height="110" viewBox="0 0 110 110"
+             aria-label="Eco score ring">
+          <!-- Rendered by JS -->
+        </svg>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px" id="ecoScoreLabel">
+          Good — above average recyclability
+        </p>
+      </div>
+    </div>
+
+    <!-- Right column: item details -->
+    <div class="result-details-card glass reveal" aria-label="Item details">
+
+      <p class="detail-section-title">Item Details</p>
+
+      <div class="detail-rows" role="list">
+
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">🏷️</span> Name</span>
+          <span class="detail-val" id="itemName">—</span>
+        </div>
+
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">📂</span> Category</span>
+          <span class="detail-val sky" id="itemCategory">—</span>
+        </div>
+
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">⭐</span> Condition</span>
+          <span class="detail-val" id="itemCondition">—</span>
+        </div>
+
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">💰</span> Estimated Value</span>
+          <span class="detail-val green" id="itemValue">—</span>
+        </div>
+
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">🧵</span> Material</span>
+          <span class="detail-val" id="itemMaterial">—</span>
+        </div>
+
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">📅</span> Estimated Age</span>
+          <span class="detail-val" id="itemAge">—</span>
+        </div>
+
+        <div class="detail-row" id="reasonRow" role="listitem" style="display:none;align-items:flex-start">
+          <span class="detail-key" style="margin-top:2px"><span aria-hidden="true">🤖</span> AI Reason</span>
+          <span class="detail-val" id="itemReason" style="max-width:260px;text-align:right;font-weight:400;color:var(--text-secondary);font-size:13px;line-height:1.5">—</span>
+        </div>
+
+      </div>
+
+      <!-- Eco breakdown -->
+      <p class="detail-section-title" style="margin-top:4px">Eco Breakdown</p>
+      <div class="detail-rows" role="list">
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">♻️</span> Recyclability</span>
+          <span class="detail-val green">High</span>
+        </div>
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">🌍</span> CO₂ impact if landfilled</span>
+          <span class="detail-val yellow">~6.2 kg</span>
+        </div>
+        <div class="detail-row" role="listitem">
+          <span class="detail-key"><span aria-hidden="true">💧</span> Water used to produce</span>
+          <span class="detail-val">~1,500 L</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Recommendation Cards -->
+  <section class="reco-section reveal" aria-labelledby="reco-title">
+    <h2 class="reco-section-title" id="reco-title">Your Recommendations</h2>
+    <p class="reco-section-sub">
+      Choose the action that best fits your situation. Each path keeps this item
+      out of the landfill.
+    </p>
+    <div class="reco-cards" id="recoCards" role="list" aria-label="Recommendation options">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <div class="result-actions-bar reveal">
+    <button class="btn btn-ghost btn-sm" id="newScan" aria-label="Scan another item">
+      ← Scan Another Item
+    </button>
+    <a href="dashboard.html" class="btn btn-ghost btn-sm" aria-label="View your dashboard">
+      📊 My Dashboard
+    </a>
+    <button class="btn btn-ghost btn-sm" onclick="window.print()" aria-label="Save or print results">
+      🖨️ Save Results
+    </button>
+    <button class="btn btn-primary btn-sm" id="shareBtn" aria-label="Share your results">
+      🌱 Share My Impact
+    </button>
+  </div>
+
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
